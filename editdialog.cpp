@@ -3,8 +3,8 @@
 
 EditDialog::EditDialog(Schedule *schedule, const QModelIndex &index, QWidget *parent) :
     schedule(schedule),
-    QDialog(parent),
     index(index),
+    QDialog(parent),
     ui(new Ui::EditDialog)
 {
     ui->setupUi(this);
@@ -16,7 +16,7 @@ EditDialog::EditDialog(Schedule *schedule, const QModelIndex &index, QWidget *pa
     ui->teacherComboBox->addItems(schedule->getTeachers());
 
     int activitySlot = index.column() * schedule->getHours().size() + index.row();
-    if (index.data().toString() != "") {
+    if (index.data().toString() != "") {        
         // TODO: show unasigned button
         activity = schedule->getActivities().value(QPair<int, QString>(activitySlot, schedule->getCurrentRoom()));
         ui->classComboBox->setCurrentText(activity.getGroup());
@@ -24,6 +24,7 @@ EditDialog::EditDialog(Schedule *schedule, const QModelIndex &index, QWidget *pa
         ui->teacherComboBox->setCurrentText(activity.getTeacher());
 
     } else {
+        ui->unassignButton->hide();
         activity = Activity(activitySlot, schedule->getCurrentRoom());
     }
 }

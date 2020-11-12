@@ -18,11 +18,11 @@ public:
     explicit EditDialog(Schedule *schedule, const QModelIndex &index, QWidget *parent = 0);
     ~EditDialog();
 
-private:
-    Ui::EditDialog *ui;
+private:  
     Activity activity;
     Schedule *schedule;
     QModelIndex index;
+    Ui::EditDialog *ui;
 
 public slots:
     void save();

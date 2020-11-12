@@ -68,6 +68,10 @@
     <property name="title">
      <string>Edit</string>
     </property>
+    <addaction name="actionEditRooms"/>
+    <addaction name="actionEditGroups"/>
+    <addaction name="actionEditClasses"/>
+    <addaction name="actionEditTeachers"/>
    </widget>
    <addaction name="menuSchool_Planner"/>
    <addaction name="menuEdit"/>
@@ -89,6 +93,26 @@
   <action name="actionSave">
    <property name="text">
     <string>Save</string>
+   </property>
+  </action>
+  <action name="actionEditRooms">
+   <property name="text">
+    <string>Rooms</string>
+   </property>
+  </action>
+  <action name="actionEditGroups">
+   <property name="text">
+    <string>Groups</string>
+   </property>
+  </action>
+  <action name="actionEditClasses">
+   <property name="text">
+    <string>Classes</string>
+   </property>
+  </action>
+  <action name="actionEditTeachers">
+   <property name="text">
+    <string>Teachers</string>
    </property>
   </action>
  </widget>
@@ -159,6 +183,70 @@
     </hint>
    </hints>
   </connection>
+  <connection>
+   <sender>actionEditClasses</sender>
+   <signal>triggered()</signal>
+   <receiver>MainWindow</receiver>
+   <slot>openEditClasses()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>365</x>
+     <y>243</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>actionEditGroups</sender>
+   <signal>triggered()</signal>
+   <receiver>MainWindow</receiver>
+   <slot>openEditGroups()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>365</x>
+     <y>243</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>actionEditRooms</sender>
+   <signal>triggered()</signal>
+   <receiver>MainWindow</receiver>
+   <slot>openEditRooms()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>365</x>
+     <y>243</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>actionEditTeachers</sender>
+   <signal>triggered()</signal>
+   <receiver>MainWindow</receiver>
+   <slot>openEditTeachers()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>365</x>
+     <y>243</y>
+    </hint>
+   </hints>
+  </connection>
  </connections>
  <slots>
   <slot>showAlert()</slot>
@@ -166,5 +254,9 @@
   <slot>changeTable()</slot>
   <slot>openEdit(QModelIndex)</slot>
   <slot>saveData()</slot>
+  <slot>openEditRooms()</slot>
+  <slot>openEditGroups()</slot>
+  <slot>openEditClasses()</slot>
+  <slot>openEditTeachers()</slot>
  </slots>
 </ui>

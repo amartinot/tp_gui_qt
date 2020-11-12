@@ -58,6 +58,30 @@ void MainWindow::saveData()
    dataService.saveData(fileName, schedule);
 }
 
+void MainWindow::openEditRooms()
+{
+    EditDictionary* editDictionary = new EditDictionary(schedule, "rooms");
+    editDictionary->exec();
+}
+
+void MainWindow::openEditGroups()
+{
+    EditDictionary* editDictionary = new EditDictionary(schedule, "groups");
+    editDictionary->exec();
+}
+
+void MainWindow::openEditClasses()
+{
+    EditDictionary* editDictionary = new EditDictionary(schedule, "classes");
+    editDictionary->exec();
+}
+
+void MainWindow::openEditTeachers()
+{
+    EditDictionary* editDictionary = new EditDictionary(schedule, "teachers");
+    editDictionary->exec();
+}
+
 void MainWindow::initiateTable()
 {
     ui->roomsComboBox->addItems(schedule->getRooms());
@@ -91,13 +115,23 @@ void MainWindow::saveConfirm(QString message) {
     }
 }
 
+void MainWindow::changeEvent(QEvent *event)
+{
+    QWidget::changeEvent(event);
+    if (event->type() == QEvent::ActivationChange)
+    {
+        if(this->isActiveWindow())
+        {
+            ui->roomsComboBox->clear();
+            ui->roomsComboBox->addItems(schedule->getRooms());
+        }
+    }
+}
+
 bool MainWindow::event(QEvent* e)
 {
     switch (e->type())
     {
-        case QEvent::FocusIn:
-            changeTable();
-            break;
         case QEvent::Close:
             if (!schedule->saveIsUptodate()){
                 saveConfirm("Do you want to save your data ?");

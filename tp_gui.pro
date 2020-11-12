@@ -30,7 +30,8 @@ SOURCES += \
     dataservice.cpp \
     schedulemodel.cpp \
     editdialog.cpp \
-    activity.cpp
+    activity.cpp \
+    editdictionary.cpp
 
 HEADERS += \
         mainwindow.h \
@@ -38,8 +39,10 @@ HEADERS += \
     dataservice.h \
     schedulemodel.h \
     editdialog.h \
-    activity.h
+    activity.h \
+    editdictionary.h
 
 FORMS += \
         mainwindow.ui \
-    editdialog.ui
+    editdialog.ui \
+    editdictionary.ui
