@@ -10,6 +10,10 @@ EditDictionary::EditDictionary(Schedule *schedule, QString dataToEdit, QWidget *
     ui->setupUi(this);
     setDataList();
     ui->dataList->addItems(dataList);
+
+    int dialogWidth = frameGeometry().width();
+    int dialogHeight = frameGeometry().height();
+    this->setFixedSize(QSize(dialogWidth, dialogHeight));
 }
 
 EditDictionary::~EditDictionary()
@@ -62,6 +66,7 @@ void EditDictionary::saveAndClose()
 {
     if (dataToEdit == "rooms") {
         schedule->setRooms(dataList);
+        schedule->setRoomsCBNeedUpdate(true);
     } else if (dataToEdit == "groups") {
         schedule->setGroups(dataList);
     } else if (dataToEdit == "classes") {

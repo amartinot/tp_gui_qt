@@ -94,7 +94,7 @@ void Schedule::setActivities(const QMap<QPair<int, QString>, Activity> &value)
 
 void Schedule::addActivity(const Activity &newActivity) {
 
-    deleteActivityIfConflict(newActivity);
+    checkActivityIfConflict(newActivity);
 
     activities.insert(QPair<int, QString>(newActivity.getSlot(), newActivity.getRoom()), newActivity);
 }
@@ -114,7 +114,7 @@ void Schedule::setDays(const QList<QString> &value)
 }
 
 // Find if a courses with same hour, same day and same teacher or same groups exists
-void Schedule::deleteActivityIfConflict(const Activity &newActivity) {
+void Schedule::checkActivityIfConflict(const Activity &newActivity) {
 
     foreach (Activity activity, activities) {
         if(activity.getSlot() == newActivity.getSlot() &&
@@ -133,5 +133,15 @@ void Schedule::clearSchedule() {
     setRooms(QList<QString>());
 
     setFilled(false);
+}
+
+bool Schedule::getRoomsCBNeedUpdate() const
+{
+    return roomsCBNeedUpdate;
+}
+
+void Schedule::setRoomsCBNeedUpdate(bool value)
+{
+    roomsCBNeedUpdate = value;
 }
 

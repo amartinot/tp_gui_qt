@@ -8,27 +8,14 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->setupUi(this);
     setWindowTitle("School Planner");
     schedule = new Schedule();
-    DataService *dataService = new DataService();
 
     initiateTable();
-    // à enlever
-    dataService->loadData("/home/amartinot/Documents/WUT/GUI/tp_qt/tp_gui/data/data.json", schedule);
-    ui->roomsComboBox->addItems(schedule->getRooms());
-
-    delete dataService;
 }
 
 MainWindow::~MainWindow()
 {
     delete ui;
     delete this->schedule;
-}
-
-void MainWindow::showAlert()
-{
-    QMessageBox Msgbox;
-    Msgbox.setText("boutton cliqué");
-    Msgbox.exec();
 }
 
 void MainWindow::openDataFile()
@@ -101,7 +88,7 @@ void MainWindow::changeTable() {
     ui->scheduleTable->show();
 }
 
-void MainWindow::openEdit(const QModelIndex &index) {
+void MainWindow::openEditActivity(const QModelIndex &index) {
     EditDialog* editDialog = new EditDialog(schedule, index);
     editDialog->exec();
 }
@@ -120,10 +107,12 @@ void MainWindow::changeEvent(QEvent *event)
     QWidget::changeEvent(event);
     if (event->type() == QEvent::ActivationChange)
     {
-        if(this->isActiveWindow())
+        if(this->isActiveWindow() && schedule->getRoomsCBNeedUpdate())
         {
             ui->roomsComboBox->clear();
             ui->roomsComboBox->addItems(schedule->getRooms());
+
+            schedule->setRoomsCBNeedUpdate(false);
         }
     }
 }

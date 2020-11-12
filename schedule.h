@@ -11,6 +11,7 @@ class Schedule
 public:
 
     Schedule();
+
     QString getCurrentRoom() const;
     void setCurrentRoom(const QString &value);
 
@@ -19,6 +20,9 @@ public:
 
     bool saveIsUptodate() const;
     void setUptodateSave(bool value);
+
+    bool getRoomsCBNeedUpdate() const;
+    void setRoomsCBNeedUpdate(bool value);
 
     QList<QString> getRooms();
     void setRooms(QList<QString> rooms);
@@ -41,20 +45,43 @@ public:
     QMap<QPair<int, QString>, Activity> getActivities() const;
     void setActivities(const QMap<QPair<int, QString>, Activity> &value);
 
+    // Method to add a new activity to the map
     void addActivity(const Activity &newActivity);
-    void deleteActivity(const Activity &activity);
-    void deleteActivityIfConflict(const Activity &newActivity);
 
+    // Method to delete an activity from the map
+    void deleteActivity(const Activity &activity);
+
+    // Method to check it there is a conflict with another activity
+    // and call the delete method for the activty in conflit if it found one
+    // impossible to have:
+    //      - same slot & same groups
+    //      - same slot & same teacher
+    //      - same slot & same room (impossible because there is one table by rooms)
+    void checkActivityIfConflict(const Activity &newActivity);
+
+    // Method to clear the application schedule
     void clearSchedule();
 
 private:
     QString currentRoom;
+
+    // True if our application schedule contains data
     bool filled = false;
+
+    // True if our schedule is up to date with the last saving
     bool uptodateSave = true;
+
+    // True if the rooms combobox need to be updating
+    bool roomsCBNeedUpdate = false;
+
     QList<QString> rooms;
+
     QList<QString> teachers;
+
     QList<QString> courses;
+
     QList<QString> groups;
+
     QList<QString> hours = QList<QString>({
         QString("08:00 - 08:45"),
         QString("08:55 - 09:40"),
@@ -67,6 +94,7 @@ private:
         QString("15:30 - 16:15"),
         QString("16:25 - 17:10")
     });
+
     QList<QString> days = QList<QString>({
         QString("Mon"),
         QString("Tue"),
@@ -74,6 +102,7 @@ private:
         QString("Thu"),
         QString("Fri")
     });
+
     QMap<QPair<int, QString>, Activity> activities;
 };
 

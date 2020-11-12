@@ -27,9 +27,13 @@ public:
 
 private:
     QString room;
+
     QString group;
+
     QString course;
+
     QString teacher;
+
     int slot;
 
 };

@@ -6,54 +6,72 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>732</width>
-    <height>488</height>
+    <width>675</width>
+    <height>492</height>
    </rect>
   </property>
   <property name="windowTitle">
    <string>MainWindow</string>
   </property>
   <widget class="QWidget" name="centralWidget">
-   <widget class="QLabel" name="label">
-    <property name="geometry">
-     <rect>
-      <x>10</x>
-      <y>10</y>
-      <width>67</width>
-      <height>17</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>Room</string>
-    </property>
-   </widget>
-   <widget class="QComboBox" name="roomsComboBox">
-    <property name="geometry">
-     <rect>
-      <x>60</x>
-      <y>4</y>
-      <width>86</width>
-      <height>31</height>
-     </rect>
-    </property>
-   </widget>
-   <widget class="QTableView" name="scheduleTable">
-    <property name="geometry">
-     <rect>
-      <x>20</x>
-      <y>50</y>
-      <width>681</width>
-      <height>361</height>
-     </rect>
-    </property>
-   </widget>
+   <layout class="QGridLayout" name="gridLayout">
+    <item row="0" column="0">
+     <widget class="QScrollArea" name="scrollArea">
+      <property name="widgetResizable">
+       <bool>true</bool>
+      </property>
+      <widget class="QWidget" name="scrollAreaWidgetContents">
+       <property name="geometry">
+        <rect>
+         <x>0</x>
+         <y>0</y>
+         <width>655</width>
+         <height>411</height>
+        </rect>
+       </property>
+       <layout class="QGridLayout" name="gridLayout_2">
+        <item row="0" column="0">
+         <layout class="QHBoxLayout" name="horizontalLayout_4">
+          <item>
+           <widget class="QLabel" name="label">
+            <property name="text">
+             <string>Room</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QComboBox" name="roomsComboBox"/>
+          </item>
+          <item>
+           <spacer name="horizontalSpacer">
+            <property name="orientation">
+             <enum>Qt::Horizontal</enum>
+            </property>
+            <property name="sizeHint" stdset="0">
+             <size>
+              <width>40</width>
+              <height>20</height>
+             </size>
+            </property>
+           </spacer>
+          </item>
+         </layout>
+        </item>
+        <item row="1" column="0">
+         <widget class="QTableView" name="scheduleTable"/>
+        </item>
+       </layout>
+      </widget>
+     </widget>
+    </item>
+   </layout>
   </widget>
   <widget class="QMenuBar" name="menuBar">
    <property name="geometry">
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>732</width>
+     <width>675</width>
      <height>22</height>
     </rect>
    </property>
@@ -132,38 +150,6 @@
     <hint type="destinationlabel">
      <x>365</x>
      <y>243</y>
-    </hint>
-   </hints>
-  </connection>
-  <connection>
-   <sender>roomsComboBox</sender>
-   <signal>currentTextChanged(QString)</signal>
-   <receiver>MainWindow</receiver>
-   <slot>changeTable()</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>105</x>
-     <y>43</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>469</x>
-     <y>23</y>
-    </hint>
-   </hints>
-  </connection>
-  <connection>
-   <sender>scheduleTable</sender>
-   <signal>doubleClicked(QModelIndex)</signal>
-   <receiver>MainWindow</receiver>
-   <slot>openEdit(QModelIndex)</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>387</x>
-     <y>184</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>666</x>
-     <y>36</y>
     </hint>
    </hints>
   </connection>
@@ -247,16 +233,47 @@
     </hint>
    </hints>
   </connection>
+  <connection>
+   <sender>roomsComboBox</sender>
+   <signal>currentTextChanged(QString)</signal>
+   <receiver>MainWindow</receiver>
+   <slot>changeTable()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>105</x>
+     <y>43</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>469</x>
+     <y>23</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>scheduleTable</sender>
+   <signal>doubleClicked(QModelIndex)</signal>
+   <receiver>MainWindow</receiver>
+   <slot>openEditActivity(QModelIndex)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>387</x>
+     <y>184</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>666</x>
+     <y>36</y>
+    </hint>
+   </hints>
+  </connection>
  </connections>
  <slots>
-  <slot>showAlert()</slot>
   <slot>openDataFile()</slot>
   <slot>changeTable()</slot>
-  <slot>openEdit(QModelIndex)</slot>
   <slot>saveData()</slot>
   <slot>openEditRooms()</slot>
   <slot>openEditGroups()</slot>
   <slot>openEditClasses()</slot>
   <slot>openEditTeachers()</slot>
+  <slot>openEditActivity(QModelIndex)</slot>
  </slots>
 </ui>
