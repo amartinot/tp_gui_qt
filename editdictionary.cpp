@@ -35,7 +35,7 @@ void EditDictionary::setDataList()
 }
 
 void EditDictionary::add()
-{
+{ 
     bool ok;
     QString value = QInputDialog::getText(this, tr("Enter new value"),dataToEdit, QLineEdit::Normal,"", &ok);
     if (ok) {
